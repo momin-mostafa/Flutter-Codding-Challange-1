@@ -11,26 +11,30 @@ class RegistrationPage extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            TextFormField(
-              controller: emailController,
-            ),
-            TextFormField(
-              controller: passwordController,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                controller.createUser(
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              TextFormField(
+                controller: emailController,
+              ),
+              TextFormField(
+                controller: passwordController,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  controller.createUser(
                     email: emailController.value.text.trim(),
-                    password: passwordController.value.text.trim());
-              },
-              child: const Text("Sign Up"),
-            )
-          ],
+                    password: passwordController.value.text.trim(),
+                  );
+                  Get.back();
+                },
+                child: const Text("Sign Up"),
+              )
+            ],
+          ),
         ),
       ),
     );
