@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coding_challenge/core/firebase_auth_service/firebase_auth_controller.dart';
+import 'package:flutter_coding_challenge/screens/home/home_screen.dart';
 import 'package:flutter_coding_challenge/screens/registration/registration_screen.dart';
 import 'package:get/get.dart';
 
@@ -22,6 +23,10 @@ class LoginPage extends GetWidget<AuthController> {
               .catchError((onError) {
             Get.snackbar(
                 'LoginPage Error', "looks like this went wrong :\n$onError");
+          }).then((value) {
+            if (controller.user.value != null) {
+              Get.to(const HomePage());
+            }
           });
         },
         child: const Text("Login"),
