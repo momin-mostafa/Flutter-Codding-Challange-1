@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coding_challenge/core/firebase_auth_service/firebase_auth_controller.dart';
-import 'package:flutter_coding_challenge/screens/registration/registration_screen.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends GetWidget<AuthController> {
-  LoginPage({Key? key}) : super(key: key);
+class RegistrationPage extends GetWidget<AuthController> {
+  RegistrationPage({Key? key}) : super(key: key);
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -13,14 +12,6 @@ class LoginPage extends GetWidget<AuthController> {
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.login(
-              email: emailController.value.text.trim(),
-              password: passwordController.value.text.trim());
-        },
-        child: const Text("Login"),
-      ),
       body: Center(
         child: Column(
           children: [
@@ -31,11 +22,13 @@ class LoginPage extends GetWidget<AuthController> {
               controller: passwordController,
             ),
             const SizedBox(height: 20),
-            TextButton(
+            ElevatedButton(
               onPressed: () {
-                Get.to(RegistrationPage());
+                controller.createUser(
+                    email: emailController.value.text.trim(),
+                    password: passwordController.value.text.trim());
               },
-              child: const Text("Register"),
+              child: const Text("Sign Up"),
             )
           ],
         ),

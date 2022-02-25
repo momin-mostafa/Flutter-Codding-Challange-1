@@ -18,7 +18,10 @@ class AuthController extends GetxController {
           email: email, password: password);
     } catch (e) {
       Get.snackbar(
-          'Creating user failed in AuthController', 'Oops ! Got an Error : $e');
+        'Creating user failed in AuthController',
+        'Oops ! Got an Error \n $e',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
@@ -26,7 +29,11 @@ class AuthController extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      Get.snackbar('Login Failed ', 'Oops ! Login Failed : $e');
+      Get.snackbar(
+        'Login Failed ',
+        'Oops ! Login Failed \n $e',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
@@ -34,7 +41,11 @@ class AuthController extends GetxController {
     try {
       await _auth.signOut();
     } catch (e) {
-      Get.snackbar('Signout AuthController', 'Oops ! Got an Signing out : $e');
+      Get.snackbar(
+        'Signout AuthController',
+        'Oops ! Got an Signing out \n $e',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }
