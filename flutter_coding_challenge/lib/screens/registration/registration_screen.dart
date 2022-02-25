@@ -25,11 +25,15 @@ class RegistrationPage extends GetWidget<AuthController> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  controller.createUser(
+                  controller
+                      .createUser(
                     email: emailController.value.text.trim(),
                     password: passwordController.value.text.trim(),
-                  );
-                  Get.back();
+                  )
+                      .catchError((errorText) {
+                    Get.snackbar('Error in creating user RegistrationPage ',
+                        "Looks like : \n $errorText");
+                  }).then((value) => Get.back());
                 },
                 child: const Text("Sign Up"),
               )

@@ -12,7 +12,8 @@ class AuthController extends GetxController {
     user.bindStream(_auth.authStateChanges());
   }
 
-  void createUser({required String email, required String password}) async {
+  Future<void> createUser(
+      {required String email, required String password}) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -25,7 +26,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void login({required String email, required String password}) async {
+  Future<void> login({required String email, required String password}) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
@@ -37,7 +38,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void signOut() async {
+  Future<void> signOut() async {
     try {
       await _auth.signOut();
     } catch (e) {

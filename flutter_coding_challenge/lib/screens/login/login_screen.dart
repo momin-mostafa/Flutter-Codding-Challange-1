@@ -15,9 +15,14 @@ class LoginPage extends GetWidget<AuthController> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.login(
-              email: emailController.value.text.trim(),
-              password: passwordController.value.text.trim());
+          controller
+              .login(
+                  email: emailController.value.text.trim(),
+                  password: passwordController.value.text.trim())
+              .catchError((onError) {
+            Get.snackbar(
+                'LoginPage Error', "looks like this went wrong :\n$onError");
+          });
         },
         child: const Text("Login"),
       ),
